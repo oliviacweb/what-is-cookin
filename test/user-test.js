@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-import User from '../src/user';
+const User = require('../src/user.js');
 
 let user1;
 //want it to be a function
@@ -11,7 +11,7 @@ let user1;
 // want it to have fav recipes property
 //want it to have a recipestocook property
 describe('User', () => {
-  before(() => {
+  beforeEach(() => {
     user1 = new User(1, "Saige O'Kon", [
       {
         "ingredient": 11477,
@@ -34,6 +34,7 @@ describe('User', () => {
         "amount": 5
       }
     ]);
+     });
     it('Should be a function', () => {
       expect(User).to.be.a('function');
     });
@@ -81,6 +82,6 @@ describe('User', () => {
      expect(user1.recipesToCook).to.deep.equal([]);
    });
 
- });
+
 
 })
