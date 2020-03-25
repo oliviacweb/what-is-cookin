@@ -24,11 +24,31 @@ class User {
     })
   }
 
+  // findFavorites() {
+  //
+  // }
+
+  addRecipesToCook(recipe) {
+    if (!this.recipesToCook.includes(recipe)){
+      this.recipesToCook.push(recipe)
+    }
+  }
+
+  removeRecipesToCook(recipe) {
+    const removedRecipe =
+    this.recipesToCook.indexOf(recipe);
+    this.recipesToCook.splice(removedRecipe, 1);
+  }
+
   filterRecipesToCook(tagName) {
     return this.recipesToCook.filter(recipe => {
       return recipe.tags.includes(tagName)
     })
   }
+
+  // findRecipesToCook() {
+  //
+  // }
 }
 
 
