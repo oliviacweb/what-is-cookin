@@ -23,6 +23,12 @@ class User {
       return recipe.tags.includes(tagName);
     })
   }
+
+  filterRecipesToCook(tagName) {
+    return this.recipesToCook.filter(recipe => {
+      return recipe.tags.includes(tagName)
+    })
+  }
 }
 
 
