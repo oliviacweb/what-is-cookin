@@ -91,10 +91,13 @@ describe('User', () => {
    it('Should be able to add recipes to favoriteRecipes', () => {
      user1.addFavoriteRecipes(recipeInfo[0]);
 
-     console.log('data', recipeInfo[0]);
      expect(user1.favoriteRecipes).to.deep.equal([recipeInfo[0]]);
    });
 
-   
+   it('should be able to remove recipes to favoriteRecipes', () => {
+     user1.removeFavoriteRecipes(recipeInfo[0]);
+
+     expect(user1.favoriteRecipes).to.deep.equal([]);
+   });
 
   });

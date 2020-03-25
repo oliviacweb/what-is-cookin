@@ -13,6 +13,10 @@ class User {
     }
   }
 
+  removeFavoriteRecipes(recipe) {
+    const removedRecipe = this.favoriteRecipes.indexOf(recipe);
+    this.favoriteRecipes.splice(removedRecipe, 1);
+  }
 
 }
 
