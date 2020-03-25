@@ -7,6 +7,11 @@ class User {
     this.recipesToCook = [];
   }
 
+  addFavoriteRecipes(recipe) {
+    if (!this.favoriteRecipes.includes(recipe)) {
+      this.favoriteRecipes.push(recipe)
+    }
+  }
 
 
 }
