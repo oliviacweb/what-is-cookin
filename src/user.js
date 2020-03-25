@@ -18,6 +18,11 @@ class User {
     this.favoriteRecipes.splice(removedRecipe, 1);
   }
 
+  filterFavorites(tagName) {
+    return this.favoriteRecipes.filter(recipe => {
+      return recipe.tags.includes(tagName);
+    })
+  }
 }
 
 
