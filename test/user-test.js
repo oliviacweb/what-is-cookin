@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const User = require('../src/user.js');
+const recipeInfo = require('../data/recipes.js');
 
 let user1;
 //want it to be a function
@@ -10,6 +11,10 @@ let user1;
 // want it to have a pantry
 // want it to have fav recipes property
 //want it to have a recipestocook property
+//should be able to add recipes to favoriteRecipes
+//should be able to remove recipes to favoriteRecipes
+//should be able to filter through recipes
+
 describe('User', () => {
   beforeEach(() => {
     user1 = new User(1, "Saige O'Kon", [
@@ -35,6 +40,7 @@ describe('User', () => {
       }
     ]);
      });
+
     it('Should be a function', () => {
       expect(User).to.be.a('function');
     });
@@ -82,6 +88,24 @@ describe('User', () => {
      expect(user1.recipesToCook).to.deep.equal([]);
    });
 
+   it('Should be able to add recipes to favoriteRecipes', () => {
+     user1.addFavoriteRecipes(recipeInfo[0]);
 
+     expect(user1.favoriteRecipes).to.deep.equal([recipeInfo[0]]);
+   });
 
-})
+   it('Should be able to remove recipes to favoriteRecipes', () => {
+     user1.removeFavoriteRecipes(recipeInfo[0]);
+
+     expect(user1.favoriteRecipes).to.deep.equal([]);
+   });
+
+   it('Should be able to filter through recipes', () => {
+     user1.addFavoriteRecipes(recipeInfo[0]);
+     user1.addFavoriteRecipes(recipeInfo[1]);
+     user1.addFavoriteRecipes(recipeInfo[2]);
+
+     expect(user1.filterFavorites('sauce')).to.deep.equal([recipeInfo[2]]);
+   })
+
+  });
