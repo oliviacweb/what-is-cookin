@@ -100,12 +100,24 @@ describe('User', () => {
      expect(user1.favoriteRecipes).to.deep.equal([]);
    });
 
-   it('Should be able to filter through recipes', () => {
+   it('Should be able to filter through favorite recipes', () => {
      user1.addFavoriteRecipes(recipeInfo[0]);
      user1.addFavoriteRecipes(recipeInfo[1]);
      user1.addFavoriteRecipes(recipeInfo[2]);
 
      expect(user1.filterFavorites('sauce')).to.deep.equal([recipeInfo[2]]);
-   })
+   });
+
+   it('Should be able to filter through recipesToCook', () => {
+     user1.addRecipesToCook(recipeInfo[0]);
+     user1.addRecipesToCook(recipeInfo[1]);
+     user1.addRecipesToCook(recipeInfo[2]);
+
+     expect(user1.filterRecipesToCook('dinner')).to.deep.equal([recipeInfo[1]]);
+   });
+
+   // it('Should be abele to search for a certain recipe in recipesToCook', () => {
+   //
+   // });
 
   });
