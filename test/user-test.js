@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const User = require('../src/user.js');
 const recipeInfo = require('../data/recipes.js');
+const ingredientInfo = require('../data/ingredients.js');
 
 let user1;
 //want it to be a function
@@ -108,6 +109,24 @@ describe('User', () => {
      user1.addFavoriteRecipes(recipeInfo[2]);
 
      expect(user1.filterFavorites('sauce')).to.deep.equal([recipeInfo[2]]);
+   });
+
+   it('Should be able to search through favoriteRecipes using recipe name', () => {
+     user1.addFavoriteRecipes(recipeInfo[0]);
+     user1.addFavoriteRecipes(recipeInfo[1]);
+     user1.addFavoriteRecipes(recipeInfo[2]);
+     user1.addFavoriteRecipes(recipeInfo[3]);
+
+     expect(user1.findFavorites('Dirty Steve\'s Original Wing Sauce', ingredientInfo)).to.deep.equal([recipeInfo[2]]);
+   });
+
+   it('Should be able to search through favoriteRecipes using ingredient name', () => {
+     user1.addFavoriteRecipes(recipeInfo[0]);
+     user1.addFavoriteRecipes(recipeInfo[1]);
+     user1.addFavoriteRecipes(recipeInfo[2]);
+     user1.addFavoriteRecipes(recipeInfo[3]);
+
+     expect(user1.findFavorites('black pepper', ingredientInfo)).to.deep.equal([recipeInfo[2]]);
    });
 
    it('Should be able to add recipes to recipesToCook', () => {

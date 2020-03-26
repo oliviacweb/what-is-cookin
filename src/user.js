@@ -24,9 +24,32 @@ class User {
     })
   }
 
-  // findFavorites() {
-  //
-  // }
+  findFavorites(recipeQuery, ingredients) {
+    const matchedOnRecipeName = this.favoriteRecipes.filter(recipe => {
+      return recipe.name.includes(recipeQuery);
+    });
+
+    const foundIngredient = ingredients.find(ingredient => {
+      if(ingredient.name) {
+        return ingredient.name.includes(recipeQuery);
+      }
+    });
+
+    const matchedOnIngredient = this.favoriteRecipes.reduce((acc, recipe) => {
+      recipe.ingredients.forEach(ingredient => {
+        if(ingredient.id && foundIngredient && ingredient.id === foundIngredient.id) {
+          return acc.push(recipe);
+        }
+      })
+      return acc;
+    }, []);
+
+    if(matchedOnRecipeName.length > 0) {
+      return matchedOnRecipeName
+    } else if (matchedOnIngredient.length > 0) {
+      return matchedOnIngredient
+    };
+  }
 
   addRecipesToCook(recipe) {
     if (!this.recipesToCook.includes(recipe)){
