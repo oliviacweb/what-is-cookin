@@ -47,5 +47,10 @@ describe('Recipe', () => {
     expect(recipe.tags).to.deep.equal([ 'side dish' ]);
     });
 
+  it('Should be able to calculate cost of ingredients', () => {
+    expect(recipe.calculateCost()).to.equal(41.66);
+
+  })
+
 
 })
