@@ -8,7 +8,7 @@ let recipe
 
 describe('Recipe', () => {
   beforeEach(() => {
-    recipe = new Recipe(recipeData[47], ingredientsData);
+    recipe = new Recipe(recipeData[47], ingredientsData, recipeData);
   });
 
   it('Should be a function', () => {
@@ -49,12 +49,16 @@ describe('Recipe', () => {
 
   it('Should be able to calculate cost of ingredients', () => {
     expect(recipe.calculateCost()).to.equal(41.66);
-
-    it('Should be able to return recipe instructions', () => {
-      expect(recipe.getInstructions()).to.equal(recipeData[47].instructions);
-    })
-
   })
+
+  it('Should return instructions', () => {
+    expect(recipe.getRecipeInstructions()).to.equal(recipeData[47].instructions);
+  })
+
+  it('Should be able to return recipes by tags', () => {
+   let recipesByTag = recipe.filterRecipeByTag('side dish');
+   expect(recipesByTag.length).to.equal(22);
+ })
 
 
 })

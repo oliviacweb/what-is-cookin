@@ -1,5 +1,5 @@
 class Recipe {
-  constructor(recipe, ingredientsData) {
+  constructor(recipe, ingredientsData, recipeData) {
      this.id = recipe.id;
      this.image = recipe.image;
      this.ingredients = recipe.ingredients;
@@ -7,6 +7,7 @@ class Recipe {
      this.name = recipe.name;
      this.tags = recipe.tags;
      this.ingredientsData = ingredientsData;
+     this.recipeData = recipeData;
   }
 
   getRecipeInstructions() {
@@ -23,6 +24,18 @@ class Recipe {
        return total;
      }, 0)
    }
+
+  filterRecipeByTag(tag) {
+    return this.recipeData.filter(recipe => recipe.tags.includes(tag))
+  }
+
+
+
+
+
+
+
+
 }
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
