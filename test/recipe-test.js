@@ -10,7 +10,12 @@ describe('Recipe', () => {
   beforeEach(() => {
     recipe = new Recipe(recipeData[47], ingredientsData);
   });
+
   it('Should be a function', () => {
     expect(Recipe).to.be.a('function');
+  });
+
+  it('Should be an instance of Recipe', () => {
+    expect(recipe).to.be.an.instanceof(Recipe);
   });
 })
