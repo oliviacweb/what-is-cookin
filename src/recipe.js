@@ -9,6 +9,10 @@ class Recipe {
      this.ingredientsData = ingredientsData;
   }
 
+  getRecipeInstructions() {
+    return this.instructions;
+  }
+
   calculateCost() {
      return this.ingredients.reduce((total, ingredient) => {
        let ingredientById = this.ingredientsData.find(matchIngredient => {

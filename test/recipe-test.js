@@ -50,6 +50,10 @@ describe('Recipe', () => {
   it('Should be able to calculate cost of ingredients', () => {
     expect(recipe.calculateCost()).to.equal(41.66);
 
+    it('Should be able to return recipe instructions', () => {
+      expect(recipe.getInstructions()).to.equal(recipeData[47].instructions);
+    })
+
   })
 
 
