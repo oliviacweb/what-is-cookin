@@ -18,4 +18,8 @@ describe('Recipe', () => {
   it('Should be an instance of Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
+
+  it('recipe should have an id', () => {
+    expect(recipe.id).to.equal(601216);
+  });
 })
