@@ -19,7 +19,15 @@ describe('Recipe', () => {
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
-  it('recipe should have an id', () => {
+  it('Should have an id', () => {
     expect(recipe.id).to.equal(601216);
   });
+
+  it('Should have have an image', () => {
+    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/601216-556x370.jpg')
+    });
+    
+  it('Should have an array of ingredients', () => {
+    expect(recipe.ingredients).to.equal(recipeData[47].ingredients);
+    });
 })
