@@ -43,5 +43,9 @@ describe('Recipe', () => {
     expect(recipe.name).to.equal("Farmer’s Market Flatbread Pizza");
     });
 
+  it('Should have an tags', () => {
+    expect(recipe.tags).to.deep.equal([ 'side dish' ]);
+    });
+
 
 })
