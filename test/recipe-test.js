@@ -26,8 +26,22 @@ describe('Recipe', () => {
   it('Should have have an image', () => {
     expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/601216-556x370.jpg')
     });
-    
+
   it('Should have an array of ingredients', () => {
     expect(recipe.ingredients).to.equal(recipeData[47].ingredients);
     });
+
+  it('Should have instructions', () => {
+    expect(recipe.instructions).to.deep.equal([{
+        number: 1,
+        instruction: 'Saute the zucchini in the olive oil on high heat. Season generously with salt and pepper. Stir and leave alone for a little while, so you get a little bit of texture from the browning on the zucchini.While you’re sauteing, toast the flatbread in the oven at 400 degrees.When the zucchini is soft and just slightly browned, remove from the heat. Take the flatbread out of the oven and spread the zucchini on the flatbread.Top with the fresh tomatoes, cheese, and fresh basil.'
+      },
+      { number: 2, instruction: 'Cut, serve, and enjoy!' }]);
+    });
+
+  it('Should have an name', () => {
+    expect(recipe.name).to.equal("Farmer’s Market Flatbread Pizza");
+    });
+
+
 })
