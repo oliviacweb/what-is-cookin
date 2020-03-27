@@ -5,16 +5,6 @@ const recipeInfo = require('../data/recipes.js');
 const ingredientInfo = require('../data/ingredients.js');
 
 let user1;
-//want it to be a function
-//want it to be an instance of user
-//want it to have an id
-//want it to have a name
-// want it to have a pantry
-// want it to have fav recipes property
-//want it to have a recipestocook property
-//should be able to add recipes to favoriteRecipes
-//should be able to remove recipes to favoriteRecipes
-//should be able to filter through recipes
 
 describe('User', () => {
   beforeEach(() => {
@@ -40,7 +30,7 @@ describe('User', () => {
         "amount": 5
       }
     ]);
-     });
+  });
 
     it('Should be a function', () => {
       expect(User).to.be.a('function');
