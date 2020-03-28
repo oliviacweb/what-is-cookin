@@ -60,5 +60,9 @@ describe('Recipe', () => {
    expect(recipesByTag.length).to.equal(22);
  })
 
+ it('Should search recipes by ingredient', () => {
+    let recipesByIng = recipe.searchByIngredient('red chili powder', ingredientsData);
+    expect(recipesByIng.length).to.equal(2);
+  })
 
 })
