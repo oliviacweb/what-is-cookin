@@ -1,4 +1,4 @@
-const mackRecipe = {
+const mockRecipe = {
     "id": 721146,
     "image": "https://spoonacular.com/recipeImages/721146-556x370.jpg",
     "ingredients": [
@@ -119,4 +119,4 @@ const mackRecipe = {
     ]
 };
 
-module.exports = mockRecipe.js
+module.exports = mockRecipe;

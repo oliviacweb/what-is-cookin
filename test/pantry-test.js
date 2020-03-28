@@ -20,4 +20,17 @@ describe('Pantry', () => {
     expect(pantry1).to.be.an.instanceof(Pantry);
   });
 
+  it('Should be passed an users pantry', () => {
+    expect(pantry1.contents).to.deep.equal(mockPantryIngredients);
+  });
+
+  it('Should be passed a desired recipe', () => {
+    expect(pantry1.recipe).to.deep.equal(mockRecipe);
+  });
+
+  it('Should be able to evalute ingredients needed for recipes', () => {
+    pantry1.evaluateIngredientsForRecipes();
+
+  });
+
 })
