@@ -3,28 +3,42 @@
   <head>
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
+    <link rel='stylesheet' type='text/css' href='style.css' />
   </head>
+
   <body>
     <header>
-      <h1>What's Cookin'</h1>
-      <img src="" alt="red spatula">
-      <div class="">
-        <button type="button" name="button"></button>
-        <button type="button" name="button"></button>
-        <input type="text" name="search-bar" value="">
+      <h1>What's Cookin'
+        <img src="../icons/spatchula.jpg" alt="red spatula">
+      </h1>
+      <div class="filter-recipe-btns">
+        <button class="recipe-book-btn" type="button" name="button">
+          <img src="../icons/recipe-book.png" alt="recipe book">
+        </button>
+        <button class="favorite-btn" type="button" name="button">
+          <img src="../icons/favorite-heart.png" alt="red heart">
+        </button>
+      </div>
+      <div class="search-bar">
+        <button class="search-btn" type="button" name="button">
+          <img src="../icons/search-img.png" alt="magnify glass">
+        </button>
+        <input class="search-input" type="text" name="" value="">
       </div>
     </header>
 
     <main>
       <h2 class="welcome-header"></h2>
       <div class="breakfast-dinner-btns">
-        <button type="button" name="breakfast"></button>
-        <button type="button" name="lunch"></button>
-        <button type="button" name="dinner"></button>
+        <button class="filter-type-btns" type="button" name="breakfast">Breakfast</button>
+        <button class="filter-type-btns" type="button" name="lunch">Lunch</button>
+        <button class="filter-type-btns" type="button" name="dinner">Dinner</button>
       </div>
-      <div class="recipe-section">
+      <section class="recipe-section">
+        <div class="indiv-recipe">
 
-      </div>
+        </div>
+      </section>
     </main>
 
     <script type="text/javascript" src="../data/users.js"></script>
