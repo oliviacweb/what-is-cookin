@@ -34,17 +34,17 @@ function loadAllRecipes(recipes) {
   recipes.forEach(recipe => {
     recipesDisplay.insertAdjacentHTML('beforeend',
   `<div class="indiv-recipe" data-id="${recipe.id}">
-   <header id='${recipe.id}' class='card-header'>
-          <label for='add-button' class='hidden'>Click to add recipe</label>
-          <button id='${recipe.id}' aria-label='add-button' class='add-button add-button${recipe.id} card-button'>
-          </button>
-          <p id='${recipe.id}' class="recipe-name">${recipe.name}</p>
-          <label for='favorite-button' class='hidden'>Click to favorite recipe
-          </label>
-          <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite${recipe.id} card-button'></button>
-        </header>
-        <img id='${recipe.id}' class='card-image'
-        src='${recipe.image}' alt='click to view recipe for ${recipe.name}'>
+    <div id='${recipe.id}' class='card-header'>
+      <label for='add-button' class='hidden'>Click to add recipe</label>
+      <button id='${recipe.id}' aria-label='add-button' class='add-button add-button${recipe.id} card-button'>
+      </button>
+      <p id='${recipe.id}' class="recipe-name">${recipe.name}</p>
+      <label for='favorite-button' class='hidden'>Click to favorite recipe
+      </label>
+      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite${recipe.id} card-button'></button>
+    </div>
+      <div id='${recipe.id}' class='card-image'
+      style='background-image: url("${recipe.image}")' alt='click to view recipe for ${recipe.name}'></div>
   </div>`)
 
   });
