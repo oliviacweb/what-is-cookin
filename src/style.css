@@ -56,8 +56,9 @@ h1 img {
 
 .recipe-book-btn,
 .favorite-btn {
-  /* background: none;
-  border: none; */
+  border: none;
+  background: none;
+  margin: -10px;
   height: 50px;
   width: 30%;
 }
@@ -130,7 +131,7 @@ h1 img {
 .indiv-recipe {
   width: 29%;
   background: white;
-  margin: 20px;
+  margin: 20px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
