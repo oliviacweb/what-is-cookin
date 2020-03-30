@@ -12,7 +12,7 @@ describe('Pantry', () => {
     pantry1 = new Pantry(mockPantryIngredients, mockRecipe);
   });
 
-  it('Should be a function', () => {
+  it.skip('Should be a function', () => {
     expect(Pantry).to.be.a('function');
   });
 
@@ -30,7 +30,7 @@ describe('Pantry', () => {
 
   it('Should be able to evalute ingredients needed for recipes', () => {
     pantry1.evaluateIngredientsForRecipes();
-
+    expect();
   });
 
 })

@@ -7,32 +7,38 @@ class Pantry {
   evaluateIngredientsForRecipes() {
     const pantryIngredients = this.contents;
     const recipeIngredients = this.recipe.ingredients;
-    const recipeIngredientInfo = recipeIngredients.map((ingredient)  => {
-      const ingredientIds = {};
-      ingredientIds.id = ingredient.id;
-      ingredientIds.amount = ingredient.quantity.amount;
-      return ingredientIds;
+    const requiredIngredients = recipeIngredients.map((ingredient)  => {
+      const newIngredientObj = {};
+      newIngredientObj.id = ingredient.id;
+      newIngredientObj.amount = ingredient.quantity.amount;
+      return newIngredientObj;
     });
+    const iHave = [];
+    const insufficient = [];
 
-    recipeIngredientInfo.forEach((ingredient) => {
-      return pantryIngredients.forEach((pantryItem) => {
-        if(ingredient.id === pantryItem.ingredient){
-          const amount = pantryItem.amount;
-          if(amount >= ingredient.amount){
-            return true;
-          }else {
-            return 'There are not enought ingredients in your pantry';
+    requiredIngredients.forEach(ingredient => {
+      const found = pantryIngredients.find(item => item.ingredient === ingredient.id);
 
-          };
-        };
-      });
+      if(found && found.amount >= ingredient.amount){
+        iHave.push(found);
+        return `You have enough of this ingredient`;
+      } else if (found && found.amount < ingredient.amount){
+        insufficient.push(found);
+        return `You have this ingredient but not enough`;
+      };
+
+      if(!found) {
+        insufficient.push(ingredient);
+        return `You need this ingredient`;
+      }
     });
-    console.log('pantry', pantryIngredients);
-    console.log('recipe', recipeIngredientInfo);
+    console.log('i need', insufficient);
+    console.log('i have', iHave);
+    this.findIngredientsNeeded(insufficient, recipeIngredients)
   };
 
-  findIngredientsNeeded() {
-
+  findIngredientsNeeded(neededIngredients, recipeIngredients) {
+    console.log('needed', neededIngredients, 'callsFor', recipeIngredients);
   };
 
   removeIngredients() {
