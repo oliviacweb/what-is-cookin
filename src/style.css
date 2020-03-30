@@ -121,7 +121,7 @@ h1 img {
 
 .recipe-section {
   margin: 20px;
-  height: 100vh;
+  height: 100%;
   background: #C4C4C4;
   display: flex;
   flex-wrap: wrap;
@@ -130,6 +130,7 @@ h1 img {
 
 .indiv-recipe {
   width: 29%;
+  height: 70%;
   background: white;
   margin: 20px 26px;
   display: flex;
@@ -138,11 +139,38 @@ h1 img {
 }
 
 .card-image {
-  height: 200px;
-  width: 100%;
-  background-position: center;
-  background-size: cover;
+ height: 85%;
+ width: 100%;
+ background-position: center;
+ background-size: cover;
 }
+.card-header {
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+}
+.card-button {
+    height: 40px;
+    width: 42px;
+    border: 1px solid black;
+}
+
+.add-recipe-img,
+.fave-recipe-img {
+  height: 100%;
+  width: 100%;
+}
+
+.recipe-name {
+  text-align: center;
+  font-size: 15px;
+}
+
+
+/* .fave-img {
+  height: 20px;
+  width: 20px;
+} */
 
 /* JS Based styling  */
 
