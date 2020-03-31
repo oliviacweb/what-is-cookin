@@ -41,7 +41,7 @@ const mockPantryIngredients = [
   },
   {
     "ingredient": 2050,
-    "amount": 4
+    "amount": 0.2
   },
   {
     "ingredient": 1032009,

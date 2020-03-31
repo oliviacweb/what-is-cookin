@@ -1,5 +1,6 @@
 let displayWelcome = document.querySelector('.welcome-header');
 let recipesDisplay = document.querySelector('.recipe-section');
+let searchBar = document.querySelector('.search-input');
 let randomUser;
 let randomIndex;
 let user;
@@ -9,6 +10,9 @@ window.onload = function() {
   greetUser();
   loadAllRecipes(allRecipes);
 }
+
+//event listeners
+searchBar.addEventListener('keyup', searchRecipes);
 
 function generateUser() {
   randomIndex = returnRandomNumber();
@@ -30,6 +34,7 @@ function returnFirstName() {
   var firstName = user.name.split(" ");
   return firstName[0];
 }
+
 function loadAllRecipes(recipes) {
   recipes.forEach(recipe => {
     recipesDisplay.insertAdjacentHTML('beforeend',
@@ -53,5 +58,9 @@ function loadAllRecipes(recipes) {
   </div>`)
 
   });
+}
 
+function searchRecipes() {
+  const searchInput = searchBar.value;
+  
 }

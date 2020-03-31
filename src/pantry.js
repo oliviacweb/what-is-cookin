@@ -2,37 +2,67 @@ class Pantry {
   constructor(contents, recipe) {
     this.contents = contents;
     this.recipe = recipe;
+    this.thingsToBuy = [];
+    this.amountToBuy = [];
   };
 
   evaluateIngredientsForRecipes() {
     const pantryIngredients = this.contents;
     const recipeIngredients = this.recipe.ingredients;
-    const recipeIngredientInfo = recipeIngredients.map((ingredient)  => {
-      const ingredientIds = {};
-      ingredientIds.id = ingredient.id;
-      ingredientIds.amount = ingredient.quantity.amount;
-      return ingredientIds;
+    const requiredIngredients = recipeIngredients.map((ingredient)  => {
+      const newIngredientObj = {};
+      newIngredientObj.id = ingredient.id;
+      newIngredientObj.amount = ingredient.quantity.amount;
+      return newIngredientObj;
     });
+    const iHave = [];
 
-    recipeIngredientInfo.forEach((ingredient) => {
-      return pantryIngredients.forEach((pantryItem) => {
-        if(ingredient.id === pantryItem.ingredient){
-          const amount = pantryItem.amount;
-          if(amount >= ingredient.amount){
-            return true;
-          }else {
-            return 'There are not enought ingredients in your pantry';
+    requiredIngredients.forEach(ingredient => {
+      const found = pantryIngredients.find(item => item.ingredient === ingredient.id);
 
-          };
-        };
-      });
+      if(found && found.amount >= ingredient.amount){
+        iHave.push(found);
+        return `You have enough of this ingredient`;
+      } else if (found && found.amount < ingredient.amount){
+        this.amountToBuy.push(found);
+        return `You have this ingredient but not enough`;
+      };
+
+      if(!found) {
+        this.thingsToBuy.push(ingredient);
+        return `You need this ingredient`;
+      }
     });
-    console.log('pantry', pantryIngredients);
-    console.log('recipe', recipeIngredientInfo);
   };
 
   findIngredientsNeeded() {
+    const recipeIngredients = this.recipe.ingredients;
+    const requiredIngredients = recipeIngredients.map((ingredient)  => {
+      const newIngredientObj = {};
+      newIngredientObj.id = ingredient.id;
+      newIngredientObj.amount = ingredient.quantity.amount;
+      return newIngredientObj;
+    });
+    const amountToBuy = this.amountToBuy;
+    const ingredientsNeeded = [];
 
+    if(this.thingsToBuy.length > 0) {
+      this.thingsToBuy.forEach(item => ingredientsNeeded.push(item))
+    };
+
+    if(this.amountToBuy.length > 0) {
+      requiredIngredients.forEach(recipeIngredient => {
+        amountToBuy.forEach(item => {
+          if(recipeIngredient.id === item.ingredient){
+            const newIngObj = recipeIngredient;
+            const needed = recipeIngredient.amount - item.amount;
+            newIngObj.amount = needed;
+            return ingredientsNeeded.push(newIngObj);
+          }
+        })
+      })
+    };
+    return ingredientsNeeded;
   };
 
   removeIngredients() {
@@ -43,10 +73,3 @@ class Pantry {
 if (typeof module !== 'undefined') {
   module.exports = Pantry;
 }
-
-// Pantries
-// Every User should have a pantry. A Pantry holds on to all the ingredients its owner has stocked, and the amount of each ingredient they have. As a user, I should be able to:
-
-// Determine whether my pantry has enough ingredients to cook a given meal
-// Determine the amount of ingredients still needed to cook a given meal, based on what’s in my pantry
-// Remove the ingredients used for a given meal from my pantry, once that meal has been cooked (only applicable if users have a list of mealsToCook; can be considered a stretch goal)
