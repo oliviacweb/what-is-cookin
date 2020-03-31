@@ -155,5 +155,10 @@ describe('User', () => {
      expect(recipesByTag.length).to.equal(22);
    })
 
+   it('Should be able to return recipes by words in name', () => {
+    let recipesByName = user1.searchByName('pizza');
+    expect(recipesByName.length).to.equal(2);
+  })
+
 
   });
