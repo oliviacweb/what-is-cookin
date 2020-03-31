@@ -25,9 +25,9 @@ class Recipe {
      }, 0)
    }
 
-  filterRecipeByTag(tag) {
-    return this.recipeData.filter(recipe => recipe.tags.includes(tag))
-  }
+  // filterRecipeByTag(tag) {
+  //   return this.recipeData.filter(recipe => recipe.tags.includes(tag))
+  // }
 
   // searchByIngredient(str, ingredients) {
   //   const ingredientByName = ingredients.find(ingredient => {

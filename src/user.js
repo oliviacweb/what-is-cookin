@@ -87,6 +87,10 @@ class User {
     return matchedIngredient
   }
 
+  filterRecipeByTag(tag) {
+    return this.recipeData.filter(recipe => recipe.tags.includes(tag))
+  }
+
   // findRecipesToCook() {
   //
   // }

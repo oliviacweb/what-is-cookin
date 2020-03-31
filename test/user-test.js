@@ -148,7 +148,12 @@ describe('User', () => {
    it('Should search recipes by ingredient', () => {
       let recipesByIng = user1.searchByIngredient('red chili powder', ingredientInfo);
       expect(recipesByIng.length).to.equal(2);
-    })
+    });
+
+    it('Should be able to return recipes by tags', () => {
+     let recipesByTag = user1.filterRecipeByTag('side dish');
+     expect(recipesByTag.length).to.equal(22);
+   })
 
 
   });
