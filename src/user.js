@@ -91,6 +91,11 @@ class User {
     return this.recipeData.filter(recipe => recipe.tags.includes(tag))
   }
 
+  searchByName(name) {
+     return this.recipeData.filter(recipe =>
+ recipe.name.toLowerCase().includes(name))
+   }
+
   // findRecipesToCook() {
   //
   // }
