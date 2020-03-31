@@ -1,10 +1,11 @@
 class User {
-  constructor(id, name, pantry){
+  constructor(id, name, pantry, recipeData){
     this.id = id;
     this.name = name;
     this.pantry = pantry;
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+    this.recipeData = recipeData
   }
 
   addFavoriteRecipes(recipe) {
@@ -67,6 +68,27 @@ class User {
     return this.recipesToCook.filter(recipe => {
       return recipe.tags.includes(tagName)
     })
+  }
+
+  searchByIngredient(str, ingredients) {
+    const ingredientByName = ingredients.find(ingredient => {
+      if(ingredient.name) {
+        return ingredient.name.includes(str);
+      }
+    });
+     const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
+      recipe.ingredients.forEach(ingredient => {
+        if(ingredient.id === ingredientByName.id) {
+          return acc.push(recipe);
+        }
+      })
+      return acc;
+    }, []);
+    return matchedIngredient
+  }
+
+  filterRecipeByTag(tag) {
+    return this.recipeData.filter(recipe => recipe.tags.includes(tag))
   }
 
   // findRecipesToCook() {

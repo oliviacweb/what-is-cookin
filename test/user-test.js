@@ -3,8 +3,10 @@ const expect = chai.expect;
 const User = require('../src/user.js');
 const recipeInfo = require('../data/recipes.js');
 const ingredientInfo = require('../data/ingredients.js');
+const Recipe = require('../src/recipe.js');
 
 let user1;
+let recipe;
 
 describe('User', () => {
   beforeEach(() => {
@@ -29,7 +31,7 @@ describe('User', () => {
         "ingredient": 11215,
         "amount": 5
       }
-    ]);
+    ], recipeInfo);
   });
 
     it('Should be a function', () => {
@@ -143,8 +145,15 @@ describe('User', () => {
      expect(user1.filterRecipesToCook('dinner')).to.deep.equal([recipeInfo[1]]);
    });
 
-   // it('Should be abele to search for a certain recipe in recipesToCook', () => {
-   //
-   // });
+   it('Should search recipes by ingredient', () => {
+      let recipesByIng = user1.searchByIngredient('red chili powder', ingredientInfo);
+      expect(recipesByIng.length).to.equal(2);
+    });
+
+    it('Should be able to return recipes by tags', () => {
+     let recipesByTag = user1.filterRecipeByTag('side dish');
+     expect(recipesByTag.length).to.equal(22);
+   })
+
 
   });

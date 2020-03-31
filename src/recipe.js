@@ -25,35 +25,26 @@ class Recipe {
      }, 0)
    }
 
-  filterRecipeByTag(tag) {
-    return this.recipeData.filter(recipe => recipe.tags.includes(tag))
-  }
+  // filterRecipeByTag(tag) {
+  //   return this.recipeData.filter(recipe => recipe.tags.includes(tag))
+  // }
 
-  searchByIngredient(str, ingredients) {
-    const ingredientByName = ingredients.find(ingredient => {
-      if(ingredient.name) {
-        return ingredient.name.includes(str);
-      }
-    });
-     const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
-      recipe.ingredients.forEach(ingredient => {
-        if(ingredient.id === ingredientByName.id) {
-          return acc.push(recipe);
-        }
-      })
-      return acc;
-    }, []);
-    return matchedIngredient
-}
-
-
-
-
-
-
-
-
-
+  // searchByIngredient(str, ingredients) {
+  //   const ingredientByName = ingredients.find(ingredient => {
+  //     if(ingredient.name) {
+  //       return ingredient.name.includes(str);
+  //     }
+  //   });
+  //    const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
+  //     recipe.ingredients.forEach(ingredient => {
+  //       if(ingredient.id === ingredientByName.id) {
+  //         return acc.push(recipe);
+  //       }
+  //     })
+  //     return acc;
+  //   }, []);
+  //   return matchedIngredient
+  // }
 }
 if (typeof module !== 'undefined') {
   module.exports = Recipe;
