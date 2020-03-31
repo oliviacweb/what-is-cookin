@@ -2,6 +2,8 @@ class Pantry {
   constructor(contents, recipe) {
     this.contents = contents;
     this.recipe = recipe;
+    this.thingsToBuy = [];
+    this.amountToBuy = [];
   };
 
   evaluateIngredientsForRecipes() {
@@ -14,7 +16,6 @@ class Pantry {
       return newIngredientObj;
     });
     const iHave = [];
-    const insufficient = [];
 
     requiredIngredients.forEach(ingredient => {
       const found = pantryIngredients.find(item => item.ingredient === ingredient.id);
@@ -23,31 +24,45 @@ class Pantry {
         iHave.push(found);
         return `You have enough of this ingredient`;
       } else if (found && found.amount < ingredient.amount){
-        insufficient.push(found);
+        this.amountToBuy.push(found);
         return `You have this ingredient but not enough`;
       };
 
       if(!found) {
-        insufficient.push(ingredient);
+        this.thingsToBuy.push(ingredient);
         return `You need this ingredient`;
       }
     });
-
-    this.findIngredientsNeeded(insufficient, requiredIngredients);
-
-    const result = {
-      iHave: iHave,
-      iNeed: insufficient
-    };
-    return result;
   };
 
-  findIngredientsNeeded(neededIngredients, recipeIngredients) {
-    console.log('needed', neededIngredients, 'callsFor', recipeIngredients);
-    recipeIngredients.map(ingredient => {
-      const found = neededIngredients.find(item => item.id === ingredient.id);
-      console.log('found', found);
-    })
+  findIngredientsNeeded() {
+    const recipeIngredients = this.recipe.ingredients;
+    const requiredIngredients = recipeIngredients.map((ingredient)  => {
+      const newIngredientObj = {};
+      newIngredientObj.id = ingredient.id;
+      newIngredientObj.amount = ingredient.quantity.amount;
+      return newIngredientObj;
+    });
+    const amountToBuy = this.amountToBuy;
+    const ingredientsNeeded = [];
+
+    if(this.thingsToBuy.length > 0) {
+      this.thingsToBuy.forEach(item => ingredientsNeeded.push(item))
+    };
+
+    if(this.amountToBuy.length > 0) {
+      requiredIngredients.forEach(recipeIngredient => {
+        amountToBuy.forEach(item => {
+          if(recipeIngredient.id === item.ingredient){
+            const newIngObj = recipeIngredient;
+            const needed = recipeIngredient.amount - item.amount;
+            newIngObj.amount = needed;
+            return ingredientsNeeded.push(newIngObj);
+          }
+        })
+      })
+    };
+    return ingredientsNeeded;
   };
 
   removeIngredients() {
