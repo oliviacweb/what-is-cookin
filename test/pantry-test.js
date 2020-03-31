@@ -12,7 +12,7 @@ describe('Pantry', () => {
     pantry1 = new Pantry(mockPantryIngredients, mockRecipe);
   });
 
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     expect(Pantry).to.be.a('function');
   });
 
@@ -51,8 +51,8 @@ describe('Pantry', () => {
     expect(result).to.deep.equal(expectedResult);
   });
 
-  it('Should be able to find the amount of missing ingredients are needed', () => {
-
-  });
+  // it('Should be able to find the amount of missing ingredients are needed', () => {
+  //
+  // });
 
 })

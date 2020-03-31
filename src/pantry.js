@@ -33,7 +33,7 @@ class Pantry {
       }
     });
 
-    this.findIngredientsNeeded(insufficient, recipeIngredients);
+    this.findIngredientsNeeded(insufficient, requiredIngredients);
 
     const result = {
       iHave: iHave,
@@ -44,6 +44,10 @@ class Pantry {
 
   findIngredientsNeeded(neededIngredients, recipeIngredients) {
     console.log('needed', neededIngredients, 'callsFor', recipeIngredients);
+    recipeIngredients.map(ingredient => {
+      const found = neededIngredients.find(item => item.id === ingredient.id);
+      console.log('found', found);
+    })
   };
 
   removeIngredients() {
