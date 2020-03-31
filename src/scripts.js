@@ -13,7 +13,7 @@ window.onload = function() {
 function generateUser() {
   randomIndex = returnRandomNumber();
   randomUser = usersData[randomIndex];
-  user = new User(randomUser.id, randomUser.name, randomUser.pantry);
+  user = new User(randomUser.id, randomUser.name, randomUser.pantry, recipeData);
   allRecipes = recipeData;
 }
 
