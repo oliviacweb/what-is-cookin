@@ -123,19 +123,33 @@ function displayRecipeInfo(event) {
   cardSection.innerHTML = `
   <button class="back" aria-label="back-button">Back</button>
   <h2 class="instructions-title">${currentRecipe.name}</h2>
-  <h3 class="instructions-list"></h3>
-  <h3 class="ingredients-list"></h3>
-  <p>The ingredients will cost: ${currentRecipe.calculateCost().toFixed(2)}</p>`;
+  <h3 class="instructions-list">Instructions:</h3>
+  <h3 class="ingredients-list">Ingredients List:</h3>
+  <h3>The ingredients will cost: ${currentRecipe.calculateCost().toFixed(2)}</h3>`;
   returnInstructions();
+  returnIngredientsList();
 }
 
 function returnInstructions() {
   instructionsList = document.querySelector('.instructions-list');
   currentRecipe.instructions.forEach(instruction => {
-      instructionsList.insertAdjacentHTML('beforebegin', `<li>
+      instructionsList.insertAdjacentHTML('beforeend', `<li>
       ${instruction.instruction}</li>
       `)
     })
+}
+
+function returnIngredientsList() {
+  ingrdList = document.querySelector('.ingredients-list');
+  currentRecipe.ingredients.forEach(ingredient => {
+    ingredients.find(ingrd => {
+      if (ingrd.id === ingredient.id) {
+        ingrdList.insertAdjacentHTML('beforeend', `<li>${ingredient.quantity.amount}${ingredient.quantity.unit} of
+        ${ingrd.name}</li>
+        `)
+      }
+    })
+  })
 }
 
 function clearDom() {
