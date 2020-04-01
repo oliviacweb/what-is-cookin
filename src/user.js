@@ -78,7 +78,7 @@ class User {
     });
      const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
       recipe.ingredients.forEach(ingredient => {
-        if(ingredient.id === ingredientByName.id) {
+        if(ingredient.id && ingredientByName && ingredient.id === ingredientByName.id) {
           return acc.push(recipe);
         }
       })
@@ -92,14 +92,14 @@ class User {
   }
 
   searchByName(name) {
-     return this.recipeData.filter(recipe =>
- recipe.name.toLowerCase().includes(name))
+     return this.recipeData.filter(recipe => recipe.name.toLowerCase().includes(name))
    }
 
   // findRecipesToCook() {
   //
   // }
 }
+
 if (typeof module !== 'undefined') {
   module.exports = User;
 }

@@ -177,3 +177,7 @@ h1 img {
 .hidden {
   visibility: hidden;
 }
+
+.hide {
+  display: none;
+}
