@@ -62,5 +62,21 @@ function loadAllRecipes(recipes) {
 
 function searchRecipes() {
   const searchInput = searchBar.value;
-  
+
+}
+
+function handleCardBtns(event){
+  var classArr = Array.from(event.target.classList);
+  var cardId = event.target.closest('.indiv-recipe').id;
+  if (classArr.includes('add-button')) {
+    toggleFavorite(cardId);
+  }
+}
+
+function toggleFavorite() {
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
+
+  recipeCards.forEach(card => {
+    console.log('card', card);
+  })
 }
