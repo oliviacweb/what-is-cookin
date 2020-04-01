@@ -1,10 +1,16 @@
 let displayWelcome = document.querySelector('.welcome-header');
 let recipesDisplay = document.querySelector('.recipe-section');
 let searchBar = document.querySelector('.search-input');
+let cardSection = document.querySelector('.recipe-section');
+let pageBody = document.querySelector('.main-body');
+let instructionsList;
 let randomUser;
 let randomIndex;
 let user;
+let pantry;
 let allRecipes;
+let clickedRecipe;
+let currentRecipe;
 let ingredients = ingredientsData;
 window.onload = function() {
   generateUser();
@@ -14,11 +20,13 @@ window.onload = function() {
 
 //event listeners
 searchBar.addEventListener('keyup', searchRecipes);
+cardSection.addEventListener('click', cardHandler);
 
 function generateUser() {
   randomIndex = returnRandomNumber();
   randomUser = usersData[randomIndex];
   user = new User(randomUser.id, randomUser.name, randomUser.pantry, recipeData);
+  pantry = new Pantry(randomUser.pantry);
   allRecipes = recipeData;
 }
 
@@ -95,4 +103,51 @@ function searchRecipes() {
       card.classList.remove('hide')
     }
   });
+}
+//recipe instructions
+
+function cardHandler() {
+  if (event.target.classList.contains('card-image')) {
+    displayRecipeInfo(event);
+ }
+  else if(event.target.classList.contains('back')) {
+    clearDom();
+    loadAllRecipes(allRecipes);
+ }
+}
+
+function displayRecipeInfo(event) {
+  matchRecipe();
+  clearDom();
+  console.log(pantry);
+  cardSection.innerHTML = `
+  <button class="back" aria-label="back-button">Back</button>
+  <h2 class="instructions-title">${currentRecipe.name}</h2>
+  <h3 class="instructions-list"></h3>
+  <h3 class="ingredients-list"></h3>
+  <p>The ingredients will cost: ${currentRecipe.calculateCost().toFixed(2)}</p>`;
+  returnInstructions();
+}
+
+function returnInstructions() {
+  instructionsList = document.querySelector('.instructions-list');
+  currentRecipe.instructions.forEach(instruction => {
+      instructionsList.insertAdjacentHTML('beforebegin', `<li>
+      ${instruction.instruction}</li>
+      `)
+    })
+}
+
+function clearDom() {
+  cardSection.innerHTML = "";
+}
+
+
+function matchRecipe() {
+   clickedRecipe = allRecipes.find(recipe => {
+      if (recipe.id === +event.target.id) {
+        return recipe;
+      }
+    })
+  currentRecipe = new Recipe(clickedRecipe, ingredients, allRecipes);
 }
