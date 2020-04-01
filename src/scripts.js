@@ -5,6 +5,7 @@ let randomUser;
 let randomIndex;
 let user;
 let allRecipes;
+let ingredients = ingredientsData;
 window.onload = function() {
   generateUser();
   greetUser();
@@ -60,7 +61,38 @@ function loadAllRecipes(recipes) {
   });
 }
 
+function combineSearchResults(first, second, third) {
+  const newArr = first.concat(second).concat(third)
+  const results = new Set();
+
+  newArr.forEach(item => {
+    results.add(item.id);
+    // results.add(item.image);
+    // results.add(item.ingredients);
+    // results.add(item.instructions);
+    // results.add(item.name);
+    // results.add(item.tags)
+  });
+
+  return Array.from(results);
+}
+
 function searchRecipes() {
-  const searchInput = searchBar.value;
-  
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'))
+  const searchInput = searchBar.value.toLowerCase();
+  const foundByTag = user.filterRecipeByTag(searchInput);
+  const foundByName = user.searchByName(searchInput);
+  const foundByIngredient = user.searchByIngredient(searchInput, ingredients);
+  const allResults = combineSearchResults(foundByName, foundByIngredient, foundByTag);
+
+  recipeCards.forEach(card => {
+    const dataId = parseInt(card.dataset.id);
+    const matched = allResults.includes(dataId)
+    console.log('matched', matched);
+    if(matched !== true){
+      card.classList.add('hide')
+    } else {
+      card.classList.remove('hide')
+    }
+  });
 }
