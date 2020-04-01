@@ -168,6 +168,7 @@ h1 img {
   height: 10%;
   justify-content: space-between;
 }
+.back,
 .card-button {
     height: 40px;
     width: 42px;
@@ -195,4 +196,8 @@ h1 img {
 
 .hidden {
   visibility: hidden;
+}
+
+.hide {
+  display: none;
 }
