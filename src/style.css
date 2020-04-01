@@ -107,6 +107,25 @@ h1 img {
   padding: 30px 0px;
 }
 
+.breakfast,
+.lunch,
+.dinner {
+  background-position: center;
+  background-size: cover;
+}
+
+.breakfast {
+  background-image: url('../icons/breakfast.jpeg');
+}
+
+.lunch {
+  background-image: url('../icons/lunch.jpeg');
+}
+
+.dinner {
+  background-image: url('../icons/dinner.jpeg');
+}
+
 .filter-type-btns {
   margin: 0% 3%;
   background-color: #C4C4C4;

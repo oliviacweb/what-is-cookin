@@ -113,6 +113,8 @@ function cardHandler() {
   else if(event.target.classList.contains('back')) {
     clearDom();
     loadAllRecipes(allRecipes);
+ } else if (event.target.classList.contains('fave-recipe-img')){
+   toggleFavorite(event.target.id);
  }
 }
 
@@ -156,7 +158,6 @@ function clearDom() {
   cardSection.innerHTML = "";
 }
 
-
 function matchRecipe() {
    clickedRecipe = allRecipes.find(recipe => {
       if (recipe.id === +event.target.id) {
@@ -164,4 +165,25 @@ function matchRecipe() {
       }
     })
   currentRecipe = new Recipe(clickedRecipe, ingredients, allRecipes);
+}
+
+
+
+function toggleFavorite(id) {
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
+
+  recipeCards.forEach(card => {
+    const cardId = card.dataset.id;
+    if(cardId === id) {
+      allRecipes.filter(recipe => {
+        if(recipe.id == cardId && !user.favoriteRecipes.includes(recipe)){
+          user.addFavoriteRecipes(recipe);
+          console.log('favorite', user.favoriteRecipes);
+        } else if (recipe.id == cardId && user.favoriteRecipes.includes(recipe)){
+          user.removeFavoriteRecipes(recipe);
+          console.log('removed', user.favoriteRecipes);
+        }
+      });
+    }
+  })
 }
