@@ -115,6 +115,8 @@ function cardHandler() {
     loadAllRecipes(allRecipes);
  } else if (event.target.classList.contains('fave-recipe-img')){
    toggleFavorite(event.target.id);
+ } else if (event.target.classList.contains('add-recipe-img')){
+   toggleToCook(event.target.id);
  }
 }
 
@@ -178,12 +180,29 @@ function toggleFavorite(id) {
       allRecipes.filter(recipe => {
         if(recipe.id == cardId && !user.favoriteRecipes.includes(recipe)){
           user.addFavoriteRecipes(recipe);
-          console.log('favorite', user.favoriteRecipes);
         } else if (recipe.id == cardId && user.favoriteRecipes.includes(recipe)){
           user.removeFavoriteRecipes(recipe);
-          console.log('removed', user.favoriteRecipes);
         }
-      });
+      })
     }
-  })
+  });
+}
+
+function toggleToCook(id) {
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
+
+  recipeCards.forEach(card => {
+    const cardId = card.dataset.id;
+    if(cardId === id) {
+      allRecipes.filter(recipe => {
+        if(recipe.id == cardId && !user.recipesToCook.includes(recipe)){
+          user.addRecipesToCook(recipe);
+          console.log('favorite', user.recipesToCook);
+        } else if (recipe.id == cardId && user.recipesToCook.includes(recipe)){
+          user.removeRecipesToCook(recipe);
+          console.log('removed', user.recipesToCook);
+        }
+      })
+    }
+  });
 }
