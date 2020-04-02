@@ -212,6 +212,38 @@ h1 img {
   font-size: 15px;
 }
 
+/* Single Recipe Layout */
+
+.recipe-info-header {
+  display: flex;
+}
+
+.instructions-title {
+  padding-top: 10px;
+  position: relative;
+  left: 85%;
+}
+
+.recipe-info {
+  display: flex;
+}
+
+.ingredients-list,
+.instructions-list,
+.ingredient-eval {
+  background: #ffffff;
+  border: 1px solid #000000;
+  padding: 10px 10px;
+}
+
+.ingredients-list,
+.ingredient-eval {
+  width: 30%;
+}
+
+.instructions-list {
+  width: 80%;
+}
 
 /* JS Based styling  */
 

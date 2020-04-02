@@ -128,17 +128,21 @@ function displayRecipeInfo(event) {
   pantry = new Pantry(user.pantry, currentRecipe);
   pantry.evaluateIngredientsForRecipes();
 
-  cardSection.innerHTML = `
+  cardSection.innerHTML = `<div class="recipe-info-header">
   <button class="back" aria-label="back-button">Back</button>
   <h2 class="instructions-title">${currentRecipe.name}</h2>
+  </div>
+  <div class="recipe-info">
+  <h3 class="ingredients-list">Ingredients List:
+    <p>Total Cost of Ingredients: $${currentRecipe.calculateCost().toFixed(2)}</p>
+  </h3>
   <h3 class="instructions-list">Instructions:</h3>
-  <h3 class="ingredients-list">Ingredients List:</h3>
   <h3 class="ingredient-eval">You are missing:</h3>
-  <h3>Total Cost of Ingredients: $${currentRecipe.calculateCost().toFixed(2)}</h3>`;
+  </div>`;
   returnInstructions();
   returnIngredientsList();
   returnPantryEval();
-}
+};
 
 
 function returnPantryEval() {
@@ -157,15 +161,16 @@ function returnPantryEval() {
          })
     })
   })
-}
+};
+
 function returnInstructions() {
   instructionsList = document.querySelector('.instructions-list');
   currentRecipe.instructions.forEach(instruction => {
       instructionsList.insertAdjacentHTML('beforeend', `<li>
       ${instruction.instruction}</li>
       `)
-    })
-}
+  })
+};
 
 function returnIngredientsList() {
   ingrdList = document.querySelector('.ingredients-list');
@@ -189,7 +194,7 @@ function matchRecipe() {
       if (recipe.id === +event.target.id) {
         return recipe;
       }
-    })
+    });
   currentRecipe = new Recipe(clickedRecipe, ingredients, allRecipes);
 }
 
