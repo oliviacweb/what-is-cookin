@@ -21,7 +21,7 @@ class Pantry {
     requiredIngredients.forEach(ingredient => {
       const found = pantryIngredients.find(item => item.ingredient === ingredient.id);
 
-      if (found && found.amount >= ingredient.amount){
+      if (found && found.amount >= ingredient.amount) {
         iHave.push(found);
         return `You have enough of this ingredient`;
       } else if (found && found.amount < ingredient.amount) {
@@ -65,8 +65,7 @@ class Pantry {
     }
     return ingredientsNeeded;
   }
-
-};
+}
 
 if (typeof module !== 'undefined') {
   module.exports = Pantry;
