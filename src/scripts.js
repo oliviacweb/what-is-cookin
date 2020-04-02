@@ -2,7 +2,6 @@ let displayWelcome = document.querySelector('.welcome-header');
 let recipesDisplay = document.querySelector('.recipe-section');
 let searchBar = document.querySelector('.search-input');
 let cardSection = document.querySelector('.recipe-section');
-let pageBody = document.querySelector('.main-body');
 let headerBtns = document.querySelector('.filter-recipe-btns');
 let mealBtns = document.querySelector('.breakfast-dinner-btns');
 let instructionsList;
@@ -40,7 +39,7 @@ function generateUser() {
 }
 
 function returnRandomNumber() {
-  randomNumber = Math.floor(Math.random() * (50 - 1) + 1);
+  let randomNumber = Math.floor(Math.random() * (50 - 1) + 1);
   return randomNumber;
 }
 
@@ -56,7 +55,7 @@ function returnFirstName() {
 function loadAllRecipes(recipes) {
   recipes.forEach(recipe => {
     recipesDisplay.insertAdjacentHTML('beforeend',
-  `<div class="indiv-recipe" data-id="${recipe.id}">
+      `<div class="indiv-recipe" data-id="${recipe.id}">
     <div id='${recipe.id}' class='card-header'>
       <button id='${recipe.id}' aria-label='add-button' class='add-button add-button${recipe.id} card-buttons'>
       <img id='${recipe.id}' class='add-recipe-img'
@@ -101,7 +100,7 @@ function searchRecipes() {
   recipeCards.forEach(card => {
     const dataId = parseInt(card.dataset.id);
     const matched = allResults.includes(dataId)
-    if(matched !== true){
+    if (matched !== true) {
       card.classList.add('hide')
     } else {
       card.classList.remove('hide')
@@ -114,15 +113,14 @@ function searchRecipes() {
 function cardHandler() {
   if (event.target.classList.contains('card-image')) {
     displayRecipeInfo(event);
- }
-  else if(event.target.classList.contains('back')) {
+  } else if (event.target.classList.contains('back')) {
     clearDom();
     loadAllRecipes(allRecipes);
- } else if (event.target.classList.contains('fave-recipe-img')){
-   toggleFavorite(event.target.id);
- } else if (event.target.classList.contains('add-recipe-img')){
-   toggleToCook(event.target.id);
- }
+  } else if (event.target.classList.contains('fave-recipe-img')) {
+    toggleFavorite(event.target.id);
+  } else if (event.target.classList.contains('add-recipe-img')) {
+    toggleToCook(event.target.id);
+  }
 }
 
 function displayRecipeInfo(event) {
@@ -146,38 +144,38 @@ function displayRecipeInfo(event) {
   returnInstructions();
   returnIngredientsList();
   returnPantryEval();
-};
+}
 
 
 function returnPantryEval() {
-  pantryEval = document.querySelector('.ingredient-eval');
+  let pantryEval = document.querySelector('.ingredient-eval');
   ingredientsNeeded = pantry.findIngredientsNeeded();
   console.log(ingredientsNeeded);
   ingredientsNeeded.forEach(ingredient => {
-       ingredients.forEach(ing => {
-         currentRecipe.ingredients.find(ingreds => {
-           console.log(ingreds)
-           if(ing.id === ingredient.id && ingreds.id === ingredient.id) {
-             pantryEval.insertAdjacentHTML('beforeend', `<li>
+    ingredients.forEach(ing => {
+      currentRecipe.ingredients.find(ingreds => {
+        console.log(ingreds)
+        if (ing.id === ingredient.id && ingreds.id === ingredient.id) {
+          pantryEval.insertAdjacentHTML('beforeend', `<li>
              ${ingredient.amount} ${ingreds.quantity.unit} of ${ing.name}</li>
              `)
-           }
-         })
+        }
+      })
     })
   })
-};
+}
 
 function returnInstructions() {
   instructionsList = document.querySelector('.instructions-list');
   currentRecipe.instructions.forEach(instruction => {
-      instructionsList.insertAdjacentHTML('beforeend', `<li>
+    instructionsList.insertAdjacentHTML('beforeend', `<li>
       ${instruction.instruction}</li>
       `)
   })
-};
+}
 
 function returnIngredientsList() {
-  ingrdList = document.querySelector('.ingredients-list');
+  let ingrdList = document.querySelector('.ingredients-list');
   currentRecipe.ingredients.forEach(ingredient => {
     ingredients.find(ingrd => {
       if (ingrd.id === ingredient.id) {
@@ -194,11 +192,11 @@ function clearDom() {
 }
 
 function matchRecipe() {
-   clickedRecipe = allRecipes.find(recipe => {
-      if (recipe.id === +event.target.id) {
-        return recipe;
-      }
-    });
+  clickedRecipe = allRecipes.find(recipe => {
+    if (recipe.id === +event.target.id) {
+      return recipe;
+    }
+  });
   currentRecipe = new Recipe(clickedRecipe, ingredients, allRecipes);
 }
 
@@ -208,9 +206,9 @@ function toggleFavorite(id) {
   console.log('hi', recipeCards);
   recipeCards.forEach(card => {
     const cardId = card.dataset.id;
-    if(cardId === id) {
+    if (cardId === id) {
       allRecipes.filter(recipe => {
-        if(recipe.id == cardId && !user.favoriteRecipes.includes(recipe)){
+        if (recipe.id == cardId && !user.favoriteRecipes.includes(recipe)) {
           user.addFavoriteRecipes(recipe);
           event.target.src = '../icons/active-heart.png';
           card.classList.add('favorited');
@@ -227,13 +225,13 @@ function toggleFavorite(id) {
 function toggleToCook(id) {
   recipeCards.forEach(card => {
     const cardId = (card.dataset.id);
-    if(cardId === id) {
+    if (cardId === id) {
       allRecipes.filter(recipe => {
-        if(recipe.id == cardId && !user.recipesToCook.includes(recipe)){
+        if (recipe.id == cardId && !user.recipesToCook.includes(recipe)) {
           user.addRecipesToCook(recipe);
           event.target.src = '../icons/active-book.png';
           card.classList.add('in-cookbook');
-        } else if (recipe.id == cardId && user.recipesToCook.includes(recipe)){
+        } else if (recipe.id == cardId && user.recipesToCook.includes(recipe)) {
           user.removeRecipesToCook(recipe);
           event.target.src = '../icons/inactive-book.png';
           card.classList.remove('in-cookbook');
@@ -244,7 +242,7 @@ function toggleToCook(id) {
 }
 
 // Header buttons filter functions
-function headerBtnsHandler(){
+function headerBtnsHandler() {
   if (event.target.classList.contains('heart-image')) {
     filterByFavorites();
   } else if (event.target.classList.contains('recipe-book-img')) {
@@ -268,17 +266,17 @@ function filterRecipesToCook() {
   });
 }
 
-// Breakfast, Lunch and Dinner Button filter functions 
+// Breakfast, Lunch and Dinner Button filter functions
 function mealBtnsHandler() {
   if (event.target.classList.contains('breakfast')) {
     filterBreakfast();
-  };
+  }
   if (event.target.classList.contains('lunch')) {
     filterLunch();
-  };
+  }
   if (event.target.classList.contains('dinner')) {
     filterDinner();
-  };
+  }
 }
 
 function filterBreakfast() {
@@ -287,7 +285,7 @@ function filterBreakfast() {
   recipeCards.forEach(card => {
     const cardId = parseInt(card.dataset.id);
     breakfastRecipes.filter(recipe => {
-      if(recipe.id !== cardId){
+      if (recipe.id !== cardId) {
         card.classList.toggle('hidden');
       }
     })
@@ -300,7 +298,7 @@ function filterLunch() {
   recipeCards.forEach(card => {
     const cardId = parseInt(card.dataset.id);
     lunchRecipes.forEach(recipe => {
-      if(cardId !== recipe.id){
+      if (cardId !== recipe.id) {
         card.classList.toggle('hidden');
       }
     })
@@ -313,7 +311,7 @@ function filterDinner() {
   recipeCards.forEach(card => {
     const cardId = parseInt(card.dataset.id);
     dinnerRecipes.filter(recipe => {
-      if(cardId !== recipe.id){
+      if (cardId !== recipe.id) {
         card.classList.toggle('hidden');
       }
     })

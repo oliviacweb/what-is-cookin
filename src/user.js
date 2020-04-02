@@ -1,5 +1,5 @@
 class User {
-  constructor(id, name, pantry, recipeData){
+  constructor(id, name, pantry, recipeData) {
     this.id = id;
     this.name = name;
     this.pantry = pantry;
@@ -31,29 +31,29 @@ class User {
     });
 
     const foundIngredient = ingredients.find(ingredient => {
-      if(ingredient.name) {
+      if (ingredient.name) {
         return ingredient.name.includes(recipeQuery);
       }
     });
 
     const matchedOnIngredient = this.favoriteRecipes.reduce((acc, recipe) => {
       recipe.ingredients.forEach(ingredient => {
-        if(ingredient.id && foundIngredient && ingredient.id === foundIngredient.id) {
+        if (ingredient.id && foundIngredient && ingredient.id === foundIngredient.id) {
           return acc.push(recipe);
         }
       })
       return acc;
     }, []);
 
-    if(matchedOnRecipeName.length > 0) {
+    if (matchedOnRecipeName.length > 0) {
       return matchedOnRecipeName
     } else if (matchedOnIngredient.length > 0) {
       return matchedOnIngredient
-    };
+    }
   }
 
   addRecipesToCook(recipe) {
-    if (!this.recipesToCook.includes(recipe)){
+    if (!this.recipesToCook.includes(recipe)) {
       this.recipesToCook.push(recipe)
     }
   }
@@ -72,13 +72,13 @@ class User {
 
   searchByIngredient(str, ingredients) {
     const ingredientByName = ingredients.find(ingredient => {
-      if(ingredient.name) {
+      if (ingredient.name) {
         return ingredient.name.includes(str);
       }
     });
-     const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
+    const matchedIngredient = this.recipeData.reduce((acc, recipe) => {
       recipe.ingredients.forEach(ingredient => {
-        if(ingredient.id && ingredientByName && ingredient.id === ingredientByName.id) {
+        if (ingredient.id && ingredientByName && ingredient.id === ingredientByName.id) {
           return acc.push(recipe);
         }
       })
@@ -92,8 +92,8 @@ class User {
   }
 
   searchByName(name) {
-     return this.recipeData.filter(recipe => recipe.name.toLowerCase().includes(name))
-   }
+    return this.recipeData.filter(recipe => recipe.name.toLowerCase().includes(name))
+  }
 }
 
 if (typeof module !== 'undefined') {
