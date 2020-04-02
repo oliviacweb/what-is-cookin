@@ -83,7 +83,7 @@ h1 img {
 }
 
 .search-btn img {
-  max-width:100%;
+  max-width: 75%;
   height:auto;
 }
 
@@ -148,13 +148,19 @@ h1 img {
 }
 
 .indiv-recipe {
+  border: 1px solid black;
   width: 29%;
-  height: 70%;
+  height: 75%;
   background: white;
   margin: 20px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card-buttons {
+  border: none;
+  width: 20%;
 }
 
 .card-image {
@@ -163,11 +169,14 @@ h1 img {
  background-position: center;
  background-size: cover;
 }
+
 .card-header {
   display: flex;
-  height: 10%;
+  height: 22%;
   justify-content: space-between;
+  margin: 4px 5px 7px;
 }
+
 .back,
 .card-button {
     height: 40px;
@@ -178,7 +187,7 @@ h1 img {
 .add-recipe-img,
 .fave-recipe-img {
   height: 100%;
-  width: 100%;
+  width: 80%;
 }
 
 .recipe-name {
