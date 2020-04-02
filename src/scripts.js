@@ -11,6 +11,7 @@ let pantry;
 let allRecipes;
 let clickedRecipe;
 let currentRecipe;
+let ingredientsNeeded;
 let ingredients = ingredientsData;
 window.onload = function() {
   generateUser();
@@ -26,7 +27,7 @@ function generateUser() {
   randomIndex = returnRandomNumber();
   randomUser = usersData[randomIndex];
   user = new User(randomUser.id, randomUser.name, randomUser.pantry, recipeData);
-  pantry = new Pantry(randomUser.pantry);
+  // pantry = new Pantry(user.pantry, currentRecipe);
   allRecipes = recipeData;
 }
 
@@ -121,17 +122,40 @@ function cardHandler() {
 function displayRecipeInfo(event) {
   matchRecipe();
   clearDom();
-  console.log(pantry);
+
+  pantry = new Pantry(user.pantry, currentRecipe);
+  pantry.evaluateIngredientsForRecipes();
+
   cardSection.innerHTML = `
   <button class="back" aria-label="back-button">Back</button>
   <h2 class="instructions-title">${currentRecipe.name}</h2>
   <h3 class="instructions-list">Instructions:</h3>
   <h3 class="ingredients-list">Ingredients List:</h3>
-  <h3>The ingredients will cost: ${currentRecipe.calculateCost().toFixed(2)}</h3>`;
+  <h3 class="ingredient-eval">You are missing:</h3>
+  <h3>Total Cost of Ingredients: $${currentRecipe.calculateCost().toFixed(2)}</h3>`;
   returnInstructions();
   returnIngredientsList();
+  returnPantryEval();
 }
 
+
+function returnPantryEval() {
+  pantryEval = document.querySelector('.ingredient-eval');
+  ingredientsNeeded = pantry.findIngredientsNeeded();
+  console.log(ingredientsNeeded);
+  ingredientsNeeded.forEach(ingredient => {
+       ingredients.forEach(ing => {
+         currentRecipe.ingredients.find(ingreds => {
+           console.log(ingreds)
+           if(ing.id === ingredient.id && ingreds.id === ingredient.id) {
+             pantryEval.insertAdjacentHTML('beforeend', `<li>
+             ${ingredient.amount} ${ingreds.quantity.unit} of ${ing.name}</li>
+             `)
+           }
+         })
+    })
+  })
+}
 function returnInstructions() {
   instructionsList = document.querySelector('.instructions-list');
   currentRecipe.instructions.forEach(instruction => {
