@@ -82,7 +82,7 @@ h1 img {
 }
 
 .search-btn img {
-  max-width: 75%;
+  max-width: 55%;
   height:auto;
 }
 
@@ -195,11 +195,6 @@ h1 img {
   font-size: 15px;
 }
 
-
-/* .fave-img {
-  height: 20px;
-  width: 20px;
-} */
 
 /* JS Based styling  */
 

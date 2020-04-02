@@ -4,6 +4,7 @@ let searchBar = document.querySelector('.search-input');
 let cardSection = document.querySelector('.recipe-section');
 let pageBody = document.querySelector('.main-body');
 let headerBtns = document.querySelector('.filter-recipe-btns');
+let mealBtns = document.querySelector('.breakfast-dinner-btns');
 let instructionsList;
 let randomUser;
 let randomIndex;
@@ -14,16 +15,19 @@ let clickedRecipe;
 let currentRecipe;
 let ingredientsNeeded;
 let ingredients = ingredientsData;
+let recipeCards;
 window.onload = function() {
   generateUser();
   greetUser();
   loadAllRecipes(allRecipes);
+  recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
 }
 
 //event listeners
 searchBar.addEventListener('keyup', searchRecipes);
 cardSection.addEventListener('click', cardHandler);
 headerBtns.addEventListener('click', headerBtnsHandler);
+mealBtns.addEventListener('click', mealBtnsHandler);
 
 function generateUser() {
   randomIndex = returnRandomNumber();
@@ -84,7 +88,6 @@ function combineSearchResults(first, second, third) {
 }
 
 function searchRecipes() {
-  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'))
   const searchInput = searchBar.value.toLowerCase();
   const foundByTag = user.filterRecipeByTag(searchInput);
   const foundByName = user.searchByName(searchInput);
@@ -193,8 +196,7 @@ function matchRecipe() {
 
 
 function toggleFavorite(id) {
-  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
-
+  console.log('hi', recipeCards);
   recipeCards.forEach(card => {
     const cardId = card.dataset.id;
     if(cardId === id) {
@@ -214,8 +216,6 @@ function toggleFavorite(id) {
 }
 
 function toggleToCook(id) {
-  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
-
   recipeCards.forEach(card => {
     const cardId = (card.dataset.id);
     if(cardId === id) {
@@ -243,12 +243,7 @@ function headerBtnsHandler(){
 }
 
 function filterByFavorites() {
-  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
-  const favoriteRecipes = user.favoriteRecipes;
-
   recipeCards.forEach(card => {
-    const cardId = parseInt(card.dataset.id);
-    const matched = favoriteRecipes.filter(recipe => recipe.id === cardId);
     if (!card.classList.contains('favorited')) {
       card.classList.toggle('hidden');
     }
@@ -256,14 +251,60 @@ function filterByFavorites() {
 }
 
 function filterRecipesToCook() {
-  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
-  const favoriteRecipes = user.favoriteRecipes;
-
   recipeCards.forEach(card => {
-    const cardId = parseInt(card.dataset.id);
-    const matched = favoriteRecipes.filter(recipe => recipe.id === cardId);
     if (!card.classList.contains('in-cookbook')) {
       card.classList.toggle('hidden');
     }
   });
+}
+
+function mealBtnsHandler() {
+  if (event.target.classList.contains('breakfast')) {
+    filterBreakfast();
+  };
+  if (event.target.classList.contains('lunch')) {
+    filterLunch();
+  };
+  if (event.target.classList.contains('dinner')) {
+    filterDinner();
+  };
+}
+
+function filterBreakfast() {
+  event.target.classList.toggle('meals-active');
+  const breakfastRecipes = user.filterRecipeByTag('breakfast');
+  recipeCards.forEach(card => {
+    const cardId = parseInt(card.dataset.id);
+    breakfastRecipes.filter(recipe => {
+      if(recipe.id !== cardId){
+        card.classList.toggle('hidden');
+      }
+    })
+  })
+}
+
+function filterLunch() {
+  event.target.classList.toggle('meals-active');
+  const lunchRecipes = user.filterRecipeByTag('lunch')
+  recipeCards.forEach(card => {
+    const cardId = parseInt(card.dataset.id);
+    lunchRecipes.forEach(recipe => {
+      if(cardId !== recipe.id){
+        card.classList.toggle('hidden');
+      }
+    })
+  })
+}
+
+function filterDinner() {
+  event.target.classList.toggle('meals-active');
+  const dinnerRecipes = user.filterRecipeByTag('dinner');
+  recipeCards.forEach(card => {
+    const cardId = parseInt(card.dataset.id);
+    dinnerRecipes.filter(recipe => {
+      if(cardId !== recipe.id){
+        card.classList.toggle('hidden');
+      }
+    })
+  })
 }
