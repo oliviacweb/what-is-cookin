@@ -3,6 +3,7 @@ let recipesDisplay = document.querySelector('.recipe-section');
 let searchBar = document.querySelector('.search-input');
 let cardSection = document.querySelector('.recipe-section');
 let pageBody = document.querySelector('.main-body');
+let headerBtns = document.querySelector('.filter-recipe-btns');
 let instructionsList;
 let randomUser;
 let randomIndex;
@@ -22,6 +23,7 @@ window.onload = function() {
 //event listeners
 searchBar.addEventListener('keyup', searchRecipes);
 cardSection.addEventListener('click', cardHandler);
+headerBtns.addEventListener('click', headerBtnsHandler);
 
 function generateUser() {
   randomIndex = returnRandomNumber();
@@ -76,11 +78,6 @@ function combineSearchResults(first, second, third) {
 
   newArr.forEach(item => {
     results.add(item.id);
-    // results.add(item.image);
-    // results.add(item.ingredients);
-    // results.add(item.instructions);
-    // results.add(item.name);
-    // results.add(item.tags)
   });
 
   return Array.from(results);
@@ -97,7 +94,6 @@ function searchRecipes() {
   recipeCards.forEach(card => {
     const dataId = parseInt(card.dataset.id);
     const matched = allResults.includes(dataId)
-    console.log('matched', matched);
     if(matched !== true){
       card.classList.add('hide')
     } else {
@@ -105,6 +101,7 @@ function searchRecipes() {
     }
   });
 }
+
 //recipe instructions
 
 function cardHandler() {
@@ -218,7 +215,7 @@ function toggleToCook(id) {
   const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
 
   recipeCards.forEach(card => {
-    const cardId = card.dataset.id;
+    const cardId = (card.dataset.id);
     if(cardId === id) {
       allRecipes.filter(recipe => {
         if(recipe.id == cardId && !user.recipesToCook.includes(recipe)){
@@ -231,4 +228,32 @@ function toggleToCook(id) {
       })
     }
   });
+}
+
+function headerBtnsHandler(){
+  if (event.target.classList.contains('heart-image')) {
+    filterByFavorites();
+  } else if (event.target.classList.contains('recipe-book-img')) {
+    filterRecipesToCook()
+  }
+}
+
+function filterByFavorites() {
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
+  const favoriteRecipes = user.favoriteRecipes;
+
+  recipeCards.forEach(card => {
+    const cardId = parseInt(card.dataset.id);
+    const matched = favoriteRecipes.filter(recipe => recipe.id === cardId);
+    if(matched.length){
+      card.classList.add('favorited');
+    }
+    if (!card.classList.contains('favorited')) {
+      card.classList.toggle('hidden');
+    }
+  });
+}
+
+function filterRecipesToCook() {
+  console.log('heeeey');
 }
