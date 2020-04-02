@@ -29,6 +29,8 @@ cardSection.addEventListener('click', cardHandler);
 headerBtns.addEventListener('click', headerBtnsHandler);
 mealBtns.addEventListener('click', mealBtnsHandler);
 
+//Generating page/user info onload
+
 function generateUser() {
   randomIndex = returnRandomNumber();
   randomUser = usersData[randomIndex];
@@ -75,6 +77,8 @@ function loadAllRecipes(recipes) {
 
   });
 }
+
+//Search Bar functions
 
 function combineSearchResults(first, second, third) {
   const newArr = first.concat(second).concat(third)
@@ -198,7 +202,7 @@ function matchRecipe() {
   currentRecipe = new Recipe(clickedRecipe, ingredients, allRecipes);
 }
 
-
+//Functions for toggline Favorites and Recipe to cook states
 
 function toggleFavorite(id) {
   console.log('hi', recipeCards);
@@ -239,6 +243,7 @@ function toggleToCook(id) {
   });
 }
 
+// Header buttons filter functions
 function headerBtnsHandler(){
   if (event.target.classList.contains('heart-image')) {
     filterByFavorites();
@@ -263,6 +268,7 @@ function filterRecipesToCook() {
   });
 }
 
+// Breakfast, Lunch and Dinner Button filter functions 
 function mealBtnsHandler() {
   if (event.target.classList.contains('breakfast')) {
     filterBreakfast();
