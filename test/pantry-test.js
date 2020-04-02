@@ -31,14 +31,14 @@ describe('Pantry', () => {
   it('Should be able to evalute ingredients needed for recipes', () => {
     pantry1.evaluateIngredientsForRecipes();
     const thingsToBuy = [{ id: 19334, amount: 6 },
-    { id: 12104, amount: 0.5 },
-    { id: 12115, amount: 1 },
-    { id: 4047, amount: 6 },
-    { id: 10019071, amount: 1 },
-    { id: 8212, amount: 1 },
-    { id: 19911, amount: 5 },
-    { id: 8121, amount: 3 },
-    { id: 12142, amount: 0.5 }];
+      { id: 12104, amount: 0.5 },
+      { id: 12115, amount: 1 },
+      { id: 4047, amount: 6 },
+      { id: 10019071, amount: 1 },
+      { id: 8212, amount: 1 },
+      { id: 19911, amount: 5 },
+      { id: 8121, amount: 3 },
+      { id: 12142, amount: 0.5 }];
     const amountToBuy = [{ ingredient: 2050, amount: 0.2 }];
 
     expect(pantry1.thingsToBuy).to.deep.equal(thingsToBuy);
@@ -49,17 +49,17 @@ describe('Pantry', () => {
     pantry1.evaluateIngredientsForRecipes();
     pantry1.findIngredientsNeeded();
     const result =  [
-    { id: 19334, amount: 6 },
-    { id: 12104, amount: 0.5 },
-    { id: 12115, amount: 1 },
-    { id: 4047, amount: 6 },
-    { id: 10019071, amount: 1 },
-    { id: 8212, amount: 1 },
-    { id: 19911, amount: 5 },
-    { id: 8121, amount: 3 },
-    { id: 12142, amount: 0.5 },
-    { id: 2050, amount: 0.8 }
-  ];
+      { id: 19334, amount: 6 },
+      { id: 12104, amount: 0.5 },
+      { id: 12115, amount: 1 },
+      { id: 4047, amount: 6 },
+      { id: 10019071, amount: 1 },
+      { id: 8212, amount: 1 },
+      { id: 19911, amount: 5 },
+      { id: 8121, amount: 3 },
+      { id: 12142, amount: 0.5 },
+      { id: 2050, amount: 0.8 }
+    ];
 
     expect(pantry1.findIngredientsNeeded()).to.deep.equal(result)
   });
