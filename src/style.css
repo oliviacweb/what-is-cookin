@@ -60,6 +60,13 @@ h1 img {
   margin: -10px;
   height: 50px;
   width: 30%;
+  color: #ffffff;
+}
+
+.recipe-book-btn:hover,
+.favorite-btn:hover {
+  color: #000000;
+  transition: .35s ease-in-out;
 }
 
 .favorite-btn img,
@@ -113,6 +120,12 @@ h1 img {
   background-size: cover;
 }
 
+.breakfast:hover,
+.lunch:hover,
+.dinner:hover {
+  background: #e7e7e7;
+}
+
 .breakfast {
   background-image: url('../icons/breakfast.jpeg');
 }
@@ -123,6 +136,10 @@ h1 img {
 
 .dinner {
   background-image: url('../icons/dinner.jpeg');
+}
+
+.meals-active {
+  background: #e7e7e7;
 }
 
 .filter-type-btns {
