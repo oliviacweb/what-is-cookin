@@ -7,6 +7,7 @@ class Pantry {
   };
 
   evaluateIngredientsForRecipes() {
+    console.log(this.recipe);
     const pantryIngredients = this.contents;
     const recipeIngredients = this.recipe.ingredients;
     const requiredIngredients = recipeIngredients.map((ingredient)  => {
