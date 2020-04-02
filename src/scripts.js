@@ -50,15 +50,15 @@ function loadAllRecipes(recipes) {
     recipesDisplay.insertAdjacentHTML('beforeend',
   `<div class="indiv-recipe" data-id="${recipe.id}">
     <div id='${recipe.id}' class='card-header'>
-      <button id='${recipe.id}' aria-label='add-button' class='add-button add-button${recipe.id} card-button'>
+      <button id='${recipe.id}' aria-label='add-button' class='add-button add-button${recipe.id} card-buttons'>
       <img id='${recipe.id}' class='add-recipe-img'
-            src='https://image.flaticon.com/icons/svg/467/467248.svg' alt='Add to
+            src='../icons/inactive-book.png' alt='Add to
             recipes to cook'>
       </button>
       <p id='${recipe.id}' class="recipe-name">${recipe.name}</p>
-      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite${recipe.id} card-button'>
+      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite${recipe.id} card-buttons'>
       <img id='${recipe.id}' class='fave-recipe-img'
-            src='https://image.flaticon.com/icons/svg/535/535285.svg' alt='Add to
+            src='../icons/inactive-heart.png' alt='Add to
             favorite recipes'>
         </button>
     </div>
@@ -204,8 +204,10 @@ function toggleFavorite(id) {
       allRecipes.filter(recipe => {
         if(recipe.id == cardId && !user.favoriteRecipes.includes(recipe)){
           user.addFavoriteRecipes(recipe);
+          event.target.src = '../icons/active-heart.png';
         } else if (recipe.id == cardId && user.favoriteRecipes.includes(recipe)){
           user.removeFavoriteRecipes(recipe);
+          event.target.src = '../icons/inactive-heart.png'
         }
       })
     }
@@ -221,10 +223,10 @@ function toggleToCook(id) {
       allRecipes.filter(recipe => {
         if(recipe.id == cardId && !user.recipesToCook.includes(recipe)){
           user.addRecipesToCook(recipe);
-          console.log('favorite', user.recipesToCook);
+          event.target.src = '../icons/active-book.png';
         } else if (recipe.id == cardId && user.recipesToCook.includes(recipe)){
           user.removeRecipesToCook(recipe);
-          console.log('removed', user.recipesToCook);
+          event.target.src = '../icons/inactive-book.png';
         }
       })
     }
