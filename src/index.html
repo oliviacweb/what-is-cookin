@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' href='style.css' />
-  </head>
 
-  <body>
-    <header>
-      <h1>What's Cookin'
-        <img src="../icons/spatchula.jpg" alt="red spatula">
-      </h1>
-      <div class="filter-recipe-btns">
-        <button class="recipe-book-btn" type="button" name="button">
-          <img class="recipe-book-img" src="../icons/recipe-book.png" alt="recipe book">
-        </button>
-        <button class="favorite-btn" type="button" name="button">
-          <img class="heart-image" src="../icons/favorite-heart.png" alt="red heart">
-        </button>
-      </div>
-      <div class="search-bar">
-        <button class="search-btn" type="button" name="button">
-          <img src="../icons/search.png" alt="magnify glass">
-        </button>
-        <input class="search-input" type="text" name="" value="">
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <title>Whats Cookin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel='stylesheet' type='text/css' href='style.css' />
+</head>
 
-    <main class="main-body">
-      <h2 class="welcome-header"></h2>
-      <div class="breakfast-dinner-btns">
-        <button class="filter-type-btns breakfast" type="button" name="breakfast">Breakfast</button>
-        <button class="filter-type-btns lunch" type="button" name="lunch">Lunch</button>
-        <button class="filter-type-btns dinner" type="button" name="dinner">Dinner</button>
-      </div>
-      <section class="recipe-section">
+<body>
+  <header>
+    <h1>What's Cookin'
+      <img src="../icons/spatchula.jpg" alt="red spatula">
+    </h1>
+    <div class="filter-recipe-btns">
+      <button class="recipe-book-btn" type="button" name="button">
+        <img class="recipe-book-img" src="../icons/recipe-book.png" alt="recipe book">
+        <p>Recipes To Cook</p>
+      </button>
+      <button class="favorite-btn" type="button" name="button">
+        <img class="heart-image" src="../icons/favorite-heart.png" alt="red heart">
+        <p>Favorite Recipes</p>
+      </button>
+    </div>
+    <div class="search-bar">
+      <button class="search-btn" type="button" name="button">
+        <img src="../icons/search.png" alt="magnify glass">
+      </button>
+      <input class="search-input" type="text" name="" value="">
+    </div>
+  </header>
 
-      </section>
-    </main>
+  <main class="main-body">
+    <h2 class="welcome-header"></h2>
+    <div class="breakfast-dinner-btns">
+      <button class="filter-type-btns breakfast" type="button" name="breakfast">Breakfast</button>
+      <button class="filter-type-btns lunch" type="button" name="lunch">Lunch</button>
+      <button class="filter-type-btns dinner" type="button" name="dinner">Dinner</button>
+    </div>
+    <section class="recipe-section">
 
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./user.js"></script>
-    <script type="text/javascript" src="./pantry.js"></script>
-    <script type="text/javascript" src="./recipe.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-  </body>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="../data/users.js"></script>
+  <script type="text/javascript" src="../data/recipes.js"></script>
+  <script type="text/javascript" src="../data/ingredients.js"></script>
+  <script type="text/javascript" src="./user.js"></script>
+  <script type="text/javascript" src="./pantry.js"></script>
+  <script type="text/javascript" src="./recipe.js"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
 </html>
