@@ -202,9 +202,11 @@ function toggleFavorite(id) {
         if(recipe.id == cardId && !user.favoriteRecipes.includes(recipe)){
           user.addFavoriteRecipes(recipe);
           event.target.src = '../icons/active-heart.png';
+          card.classList.add('favorited');
         } else if (recipe.id == cardId && user.favoriteRecipes.includes(recipe)){
           user.removeFavoriteRecipes(recipe);
           event.target.src = '../icons/inactive-heart.png'
+          card.classList.remove('favorited')
         }
       })
     }
@@ -245,9 +247,6 @@ function filterByFavorites() {
   recipeCards.forEach(card => {
     const cardId = parseInt(card.dataset.id);
     const matched = favoriteRecipes.filter(recipe => recipe.id === cardId);
-    if(matched.length){
-      card.classList.add('favorited');
-    }
     if (!card.classList.contains('favorited')) {
       card.classList.toggle('hidden');
     }
