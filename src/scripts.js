@@ -223,9 +223,11 @@ function toggleToCook(id) {
         if(recipe.id == cardId && !user.recipesToCook.includes(recipe)){
           user.addRecipesToCook(recipe);
           event.target.src = '../icons/active-book.png';
+          card.classList.add('in-cookbook');
         } else if (recipe.id == cardId && user.recipesToCook.includes(recipe)){
           user.removeRecipesToCook(recipe);
           event.target.src = '../icons/inactive-book.png';
+          card.classList.remove('in-cookbook');
         }
       })
     }
@@ -254,5 +256,14 @@ function filterByFavorites() {
 }
 
 function filterRecipesToCook() {
-  console.log('heeeey');
+  const recipeCards = Array.from(document.querySelectorAll('.indiv-recipe'));
+  const favoriteRecipes = user.favoriteRecipes;
+
+  recipeCards.forEach(card => {
+    const cardId = parseInt(card.dataset.id);
+    const matched = favoriteRecipes.filter(recipe => recipe.id === cardId);
+    if (!card.classList.contains('in-cookbook')) {
+      card.classList.toggle('hidden');
+    }
+  });
 }
